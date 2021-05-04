@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Button Class Example</title>
+    <style>
+        .form {
+            border: 1px solid #999;
+            padding: 20px;
+        }
+
+        button,
+        input {
+            padding: 20px;
+        }
+
+        button.success {
+            background-color: green;
+            color: white
+        }
+
+        button.danger {
+            background-color: red;
+            color: white
+        }
+
+        button.warning {
+            background-color: orange;
+            color: white
+        }
+
+        button.disabled {
+            background-color: gray;
+            color: black
+        }
+
+        button.default {
+            background-color: white;
+            color: black
+        }
+    </style>
+</head>
+
+<body>
+
+    <form class="form">
+        <input type="text" placeholder="some dummy input">
+        <div id="actions">
+            <!-- insert buttons inside this element! -->
+        </div>
+    </form>
+
+    <script>
+
+        class Button {
+            constructor(text, type, action) {
+                    this.text = text;
+                    this.type = type;
+                    this.action = action;
+            }
+
+         render(actions) {
+                actions.innerHTML += `
+                <button class="${this.type}" onclick="${this.action}">${this.text}</button> 
+                `
+            }
+        }
+
+        let b1 = new Button("OK", "success", "okAction()")
+        let b2 = new Button("Cancel", "danger", "cancelAction()")
+        let b3 = new Button("Warning", "warning", "warningAction()")
+        let b4 = new Button("Disabled", "disabled", "disabledAction()")
+        let b5 = new Button("Default", "default", "defaultAction()")
+        
+
+        function okAction() {
+            alert("You've accepted")
+        }
+        function cancelAction() {
+            alert("You've canceled")
+        }
+
+        function warningAction() {
+            alert("You've warning") 
+        }
+        function disabledAction() {
+            alert("You've disabled") 
+        }
+        function defaultAction() {
+            alert("You've default") 
+        }
+
+     b1.render(actions)
+     b2.render(actions)
+     b3.render(actions)
+     b4.render(actions)
+     b5.render(actions)
+        
+    </script>
+    
+</body>
+
+</html>
